@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Pocket Doctor</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
+    <string name="very_severely_underweight">Very Severely UnderWeight</string>
+    <string name="severely_underweight">Severely UnderWeight</string>
+    <string name="underweight">UnderWeight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese_class_i">Obeese Class I (Moderately Obese)</string>
+    <string name="obese_class_ii">Obeese Class II (Severely Obese)</string>
+    <string name="obese_class_iii">Obeese Class III (Very Severely Obese)</string>
+
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "720610702013",
+    "firebase_url": "https://pocket-doctor-73480.firebaseio.com",
+    "project_id": "pocket-doctor-73480",
+    "storage_bucket": "pocket-doctor-73480.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720610702013:android:227a888377dd839a",
+        "android_client_info": {
+          "package_name": "com.uwu.cstgroupproject.pocketdoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720610702013-acps933p2tr6o4ujeu9p34bbndg7pn2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uwu.cstgroupproject.pocketdoctor",
+            "certificate_hash": "9b3d353b56cabcba6aab23e39d1c4a91a9a5f350"
+          }
+        },
+        {
+          "client_id": "720610702013-8pqb9bj3gr7om7pk0nqto65g2h9t6dva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWvDzT2Dzb-1FWLMhmAxvU2vVG3-bKO68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720610702013-8pqb9bj3gr7om7pk0nqto65g2h9t6dva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
