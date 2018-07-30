@@ -105,7 +105,7 @@ public class ClickPostActivity extends AppCompatActivity
 
     private void EditCurrentPost(String description)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.AppTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.DialogTheme);
         builder.setTitle("Edit Post");
 
         final EditText inputField = new EditText(ClickPostActivity.this);
@@ -131,7 +131,7 @@ public class ClickPostActivity extends AppCompatActivity
             }
         });
 
-        Dialog dialog = builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
 
     }
@@ -139,7 +139,7 @@ public class ClickPostActivity extends AppCompatActivity
     private void DeleteCurrentPost()
     {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.AppTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.DialogTheme);
         builder.setTitle("Delete Post");
         builder.setMessage("Are you sure you want to Delete Post?");
         builder.setCancelable(true);
@@ -163,7 +163,7 @@ public class ClickPostActivity extends AppCompatActivity
             }
         });
 
-        Dialog dialog = builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
 
     }
