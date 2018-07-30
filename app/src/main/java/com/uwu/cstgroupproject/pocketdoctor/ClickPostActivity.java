@@ -1,6 +1,7 @@
 package com.uwu.cstgroupproject.pocketdoctor;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.text.style.ClickableSpan;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,23 +55,34 @@ public class ClickPostActivity extends AppCompatActivity
         DeletePostButton.setVisibility(View.INVISIBLE);
         EditPostButton.setVisibility(View.INVISIBLE);
 
-        ClickPostRef.addValueEventListener(new ValueEventListener() {
+        ClickPostRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                description = dataSnapshot.child("description").getValue().toString();
-                image = dataSnapshot.child("postimage").getValue().toString();
-                databaseUserID = dataSnapshot.child("uid").getValue().toString();
+               if(dataSnapshot.exists())
+               {
+                   description = dataSnapshot.child("description").getValue().toString();
+                   image = dataSnapshot.child("postimage").getValue().toString();
+                   databaseUserID = dataSnapshot.child("uid").getValue().toString();
 
-                PostDescription.setText(description);
-                Picasso.with(ClickPostActivity.this).load(image).into(PostImage);
+                   PostDescription.setText(description);
+                   Picasso.with(ClickPostActivity.this).load(image).into(PostImage);
 
 
-                if(currentUserID.equals(databaseUserID))
-                {
-                    DeletePostButton.setVisibility(View.VISIBLE);
-                    EditPostButton.setVisibility(View.VISIBLE);
-                }
+                   if(currentUserID.equals(databaseUserID))
+                   {
+                       DeletePostButton.setVisibility(View.VISIBLE);
+                       EditPostButton.setVisibility(View.VISIBLE);
+                   }
+
+                   EditPostButton.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           EditCurrentPost(description);
+                       }
+                   });
+               }
             }
 
             @Override
@@ -79,47 +92,87 @@ public class ClickPostActivity extends AppCompatActivity
         });
 
 
-        DeletePostButton.setOnClickListener(new View.OnClickListener() {
+        DeletePostButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(ClickPostActivity.this);
-                builder1.setMessage("Are you sure you want to Delete Post?");
-                builder1.setCancelable(true);
-
-                builder1.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                DeleteCurrentPost();
-                                dialog.cancel();
-                            }
-                        });
-
-                builder1.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
+                DeleteCurrentPost();
             }
         });
 
     }
 
-    private void DeleteCurrentPost()
+    private void EditCurrentPost(String description)
     {
-        ClickPostRef.removeValue();
-        SendUserToMainActivity();
-        Toast.makeText(this, "Post Has Been Deleted Successfully.", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
+        builder.setTitle("Edit Post");
+
+        final EditText inputField = new EditText(ClickPostActivity.this);
+        inputField.setText(description);
+        builder.setView(inputField);
+
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                ClickPostRef.child("description").setValue(inputField.getText().toString());
+                Toast.makeText(ClickPostActivity.this, "Post Has Been Updated Successfully.", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                dialog.cancel();
+            }
+        });
+
+        Dialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_light);
+
     }
 
-    private void SendUserToMainActivity() {
+    private void DeleteCurrentPost()
+    {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
+        builder.setTitle("Delete Post");
+        builder.setMessage("Are you sure you want to Delete Post?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                ClickPostRef.removeValue();
+                SendUserToMainActivity();
+                Toast.makeText(ClickPostActivity.this, "Post Has Been Deleted Successfully.", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                dialog.cancel();
+            }
+        });
+
+        Dialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_light);
+
+
+    }
+
+    private void SendUserToMainActivity()
+    {
         Intent mainIntent = new Intent(ClickPostActivity.this,MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
