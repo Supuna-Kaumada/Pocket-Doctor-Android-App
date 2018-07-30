@@ -105,7 +105,7 @@ public class ClickPostActivity extends AppCompatActivity
 
     private void EditCurrentPost(String description)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.AppTheme);
         builder.setTitle("Edit Post");
 
         final EditText inputField = new EditText(ClickPostActivity.this);
@@ -133,14 +133,13 @@ public class ClickPostActivity extends AppCompatActivity
 
         Dialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
 
     }
 
     private void DeleteCurrentPost()
     {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this, R.style.AppTheme);
         builder.setTitle("Delete Post");
         builder.setMessage("Are you sure you want to Delete Post?");
         builder.setCancelable(true);
@@ -166,8 +165,6 @@ public class ClickPostActivity extends AppCompatActivity
 
         Dialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
-
 
     }
 
