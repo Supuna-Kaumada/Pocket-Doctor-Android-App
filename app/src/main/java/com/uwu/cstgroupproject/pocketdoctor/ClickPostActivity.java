@@ -133,7 +133,7 @@ public class ClickPostActivity extends AppCompatActivity
 
         Dialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_light);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
 
     }
 
@@ -166,7 +166,7 @@ public class ClickPostActivity extends AppCompatActivity
 
         Dialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_light);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
 
 
     }
