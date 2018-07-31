@@ -37,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity
 {
     private Toolbar mToolbar;
 
-    private EditText status,username,fullname,city,dob,gender,height,weight,bloodgroup;
+    private EditText status,username,fullname,city,dob,gender,height,weight,bloodgroup,relationship;
     private Button UpdateAccountSettigs;
     private CircleImageView userprofileimage;
 
@@ -76,6 +76,7 @@ public class SettingsActivity extends AppCompatActivity
         height = (EditText)findViewById(R.id.settings_height);
         weight = (EditText)findViewById(R.id.settings_weight);
         bloodgroup =  (EditText)findViewById(R.id.settings_bloodgroup);
+        relationship = (EditText)findViewById(R.id.settings_relationship);
         userprofileimage = (CircleImageView)findViewById(R.id.settings_profile_image);
 
         Loadingbar = new ProgressDialog(this);
@@ -98,6 +99,7 @@ public class SettingsActivity extends AppCompatActivity
                     String usrheight = dataSnapshot.child("height").getValue().toString();
                     String usrweight = dataSnapshot.child("weight").getValue().toString();
                     String usrbloodgoup = dataSnapshot.child("bloodgoup").getValue().toString();
+                    String usrrelationship = dataSnapshot.child("relationashipstatus").getValue().toString();
 
                     Picasso.with(SettingsActivity.this).load(usrprofileimage).placeholder(R.drawable.profile).into(userprofileimage);
                     status.setText(usrstatus);
@@ -109,6 +111,7 @@ public class SettingsActivity extends AppCompatActivity
                     height.setText(usrheight);
                     weight.setText(usrweight);
                     bloodgroup.setText(usrbloodgoup);
+                    relationship.setText(usrrelationship);
                 }
 
             }
@@ -233,6 +236,7 @@ public class SettingsActivity extends AppCompatActivity
         String valheight = height.getText().toString();
         String valweight = weight.getText().toString();
         String valbloodgoup = bloodgroup.getText().toString();
+        String valrelationship = relationship.getText().toString();
 
         if(TextUtils.isEmpty(valstatus))
         {
@@ -258,6 +262,10 @@ public class SettingsActivity extends AppCompatActivity
         {
             Toast.makeText(this, "Please Select Your Gender..", Toast.LENGTH_SHORT).show();
         }
+        else if(TextUtils.isEmpty(valgender))
+        {
+            Toast.makeText(this, "Please Enter Your Relationship Status..", Toast.LENGTH_SHORT).show();
+        }
         else if(TextUtils.isEmpty(valheight))
         {
             Toast.makeText(this, "Please Enter Your Height..", Toast.LENGTH_SHORT).show();
@@ -276,11 +284,11 @@ public class SettingsActivity extends AppCompatActivity
             Loadingbar.setMessage("Please Wait While We are Updating Your Pocket Doctor Account Settings..");
             Loadingbar.setCanceledOnTouchOutside(true);
             Loadingbar.show();
-            UpdateAccountInfo(valstatus,valusername,valfullname,valcity,valdob,valgender,valheight,valweight,valbloodgoup);
+            UpdateAccountInfo(valstatus,valusername,valfullname,valcity,valdob,valgender,valheight,valweight,valbloodgoup,valrelationship);
         }
     }
 
-    private void UpdateAccountInfo(String valstatus, String valusername, String valfullname, String valcity, String valdob, String valgender, String valheight, String valweight, String valbloodgoup)
+    private void UpdateAccountInfo(String valstatus, String valusername, String valfullname, String valcity, String valdob, String valgender, String valheight, String valweight, String valbloodgoup,String valrelationship )
     {
         HashMap userMap = new HashMap();
         userMap.put("username",valusername);
@@ -292,6 +300,7 @@ public class SettingsActivity extends AppCompatActivity
         userMap.put("height",valheight);
         userMap.put("weight",valweight);
         userMap.put("bloodgoup",valbloodgoup);
+        userMap.put("relationashipstatus",valrelationship);
 
         SettingsuserRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
             @Override

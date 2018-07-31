@@ -230,6 +230,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("height","");
             userMap.put("weight","");
             userMap.put("bloodgoup","");
+            userMap.put("relationashipstatus","");
 
             usersRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
