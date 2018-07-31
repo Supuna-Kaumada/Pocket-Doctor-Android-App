@@ -225,6 +225,10 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("city",city);
             userMap.put("dob","");
             userMap.put("gender","none");
+            userMap.put("status","Hello I'm using Pocket Doctor !");
+            userMap.put("height","");
+            userMap.put("weight","");
+            userMap.put("bloodgoup","");
 
             usersRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override

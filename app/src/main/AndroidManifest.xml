@@ -28,7 +28,8 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".PostActivity" />
-        <activity android:name=".BMIActivity" />
+        <activity android:name=".BMIActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -36,7 +37,10 @@
 
         <activity android:name=".ScanActivity" />
         <activity android:name=".ClickPostActivity" />
-        <activity android:name=".ScanReport"></activity>
+        <activity android:name=".ScanReport"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
