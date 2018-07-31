@@ -224,7 +224,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("fullname",fullname);
             userMap.put("city",city);
             userMap.put("dob","");
-            userMap.put("gender","none");
+            userMap.put("gender","");
             userMap.put("status","Hello I'm using Pocket Doctor !");
             userMap.put("height","");
             userMap.put("weight","");
