@@ -75,7 +75,8 @@ public class SetupActivity extends AppCompatActivity {
 
         ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
@@ -133,8 +134,8 @@ public class SetupActivity extends AppCompatActivity {
             {
                 Loadingbar.setTitle("Updating Profile Image");
                 Loadingbar.setMessage("Please Wait While We are Updating Your Pocket Doctor Profile Image..");
-                Loadingbar.show();
                 Loadingbar.setCanceledOnTouchOutside(true);
+                Loadingbar.show();
 
 
                 Uri resultUri = result.getUri();
@@ -224,7 +225,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("fullname",fullname);
             userMap.put("city",city);
             userMap.put("dob","");
-            userMap.put("gender","none");
+            userMap.put("gender","");
             userMap.put("status","Hello I'm using Pocket Doctor !");
             userMap.put("height","");
             userMap.put("weight","");
